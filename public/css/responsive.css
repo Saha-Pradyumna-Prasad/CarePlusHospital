@@ -1,0 +1,265 @@
+/* Mobile First Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Mobile Devices (max-width: 575px) */
+@media (max-width: 575px) {
+    /* Cards */
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    /* Typography */
+    h1.display-4 {
+        font-size: 1.8rem !important;
+    }
+    
+    h1.display-3 {
+        font-size: 2rem !important;
+    }
+    
+    .lead {
+        font-size: 1rem !important;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Tables - make scrollable */
+    .table-responsive-mobile {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+    }
+    
+    /* Modals */
+    .modal-dialog {
+        margin: 10px !important;
+    }
+    
+    .modal-body {
+        padding: 15px !important;
+    }
+    
+    /* Forms */
+    .form-control, .form-select {
+        font-size: 14px !important;
+    }
+    
+    /* Navbar */
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Stats Cards */
+    .stats-card h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        text-align: center;
+        padding: 30px 15px !important;
+    }
+    
+    /* Dashboard Sidebar */
+    .sidebar {
+        width: 100% !important;
+        position: fixed !important;
+        top: 0;
+        left: -100%;
+        transition: left 0.3s ease;
+        z-index: 1050;
+        height: 100vh !important;
+        overflow-y: auto;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .sidebar-toggle {
+        display: block !important;
+    }
+    
+    /* Dashboard Content */
+    #page-content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        z-index: 1000;
+    }
+    
+    /* Doctor/PA Cards */
+    .doctor-card, .pa-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Tablet Devices (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    h1.display-4 {
+        font-size: 2.2rem !important;
+    }
+    
+    .hero-section {
+        text-align: center;
+        padding: 40px 20px !important;
+    }
+    
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Small Desktop (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    h1.display-4 {
+        font-size: 2.5rem !important;
+    }
+    
+    .sidebar {
+        width: 220px !important;
+    }
+    
+    #page-content-wrapper {
+        margin-left: 220px !important;
+    }
+}
+
+/* Desktop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px !important;
+    }
+}
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px !important;
+    }
+}
+
+/* Common Responsive Fixes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive Tables */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive Images in Cards */
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Responsive Modals */
+@media (max-width: 576px) {
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Responsive Grid Fix */
+.row {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Toast Messages Responsive */
+@media (max-width: 576px) {
+    .toast {
+        width: 90% !important;
+        left: 5% !important;
+        right: 5% !important;
+    }
+}
+
+/* Form Inputs Responsive */
+input, select, textarea {
+    max-width: 100%;
+}
+
+/* Dashboard Stats Cards */
+@media (max-width: 768px) {
+    .stats-card {
+        margin-bottom: 15px;
+    }
+    
+    .stats-card .card-body {
+        padding: 15px !important;
+    }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 15px;
+    z-index: 1040;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+/* Loading Spinner Responsive */
+.spinner-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Print Styles */
+@media print {
+    .sidebar, .navbar, .btn, .no-print {
+        display: none !important;
+    }
+    
+    .container, .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
