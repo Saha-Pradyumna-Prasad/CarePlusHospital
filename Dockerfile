@@ -1,22 +1,32 @@
-# ফাইলটি ডকার ইমেজ তৈরির নির্দেশনা দেয়
-FROM richarvey/nginx-php-fpm:2.1.2
+# PHP 8.4 with FPM & Nginx
+FROM serversideup/php:8.4-fpm-nginx
 
-# অ্যাপের ফাইল কন্টেইনারের ভিতরে কপি করে
+USER root
+
+WORKDIR /var/www/html
+
+# কপি সব ফাইল
 COPY . .
 
-# লারাভেল অ্যাপের জন্য প্রয়োজনীয় কনফিগারেশন সেট করে
-ENV SKIP_COMPOSER 0
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+# অনুমতি ঠিক করা
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
 
-# লারাভেলের এনভায়রনমেন্ট ভেরিয়েবল সেট করে
-ENV APP_ENV production
-ENV APP_DEBUG false
+# PostgreSQL client (Render DB এর জন্য)
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
 
-# কম্পোজার সেরা কাজ করার জন্য সুপার ইউজার মোড চালু করে
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# ইউজার সুইচ (নিরাপত্তার জন্য)
+USER www-data
 
-# কন্টেইনার শুরুর সময় যেসব স্ক্রিপ্ট চালাতে হবে তার নির্দেশনা
-CMD ["/start.sh"]
+# কম্পোজার ডিপেন্ডেন্সি ইনস্টল
+RUN composer install --no-dev --no-interaction --optimize-autoloader
+
+# ক্যাশ প্রি-রান
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
+
+EXPOSE 8080
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
