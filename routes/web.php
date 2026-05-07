@@ -93,7 +93,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/patients', [AdminController::class, 'storePatient'])->name('patients.store');
     Route::put('/patients/{id}', [AdminController::class, 'updatePatient'])->name('patients.update');
     Route::delete('/patients/{id}', [AdminController::class, 'deletePatient'])->name('patients.delete');
-    Route::put('/admin/patients/{id}', [AdminController::class, 'updatePatient'])->name('patients.update');
+    //Route::put('/admin/patients/{id}', [AdminController::class, 'updatePatient'])->name('patients.update');
     
     // Services Management
     Route::get('/services', [AdminController::class, 'services'])->name('services');
